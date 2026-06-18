@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conrad Asia Energy Ltd</title>
+<style>
+  :root{
+    --orange:#ef9300; --orange-deep:#c97c00;
+    --charcoal:#4A4A4A; --ink:#2B2B2B; --slate:#7C7C7C;
+    --mist:#E8E8E8; --hair:#DCDCDC; --paper:#FFFFFF; --backdrop:#F2F1EF;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --pad:56px;
+    --maxw:1440px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; font-family:var(--sans); color:var(--ink);
+    background:var(--paper); -webkit-font-smoothing:antialiased;
+    font-size:16px; line-height:1.5;
+  }
+  img{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 var(--pad);}
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    display:flex; align-items:flex-start; gap:14px;
+    font-size:13px; font-weight:700; letter-spacing:.20em; text-transform:uppercase;
+    color:var(--charcoal); margin:0 0 22px;
+  }
+  .eyebrow::before{ content:""; width:28px; height:3px; background:var(--orange); display:block; margin-top:5px; flex:0 0 auto; }
+  .eyebrow.on-dark{ color:var(--orange); }
+  h2.section-title{
+    font-size:46px; line-height:1.05; font-weight:700; letter-spacing:-.01em;
+    margin:0 0 20px; color:var(--ink);
+  }
+  h2.section-title .accent{ color:var(--orange); }
+  .lead{ font-size:19px; line-height:1.6; color:var(--slate); max-width:760px; margin:0; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    height:46px; padding:0 26px; font-size:13px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; cursor:pointer;
+    border:1.5px solid transparent; transition:.25s ease; white-space:nowrap;
+  }
+  .btn-primary{ background:var(--orange); color:#fff; }
+  .btn-primary:hover{ background:var(--orange-deep); }
+  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--ink); }
+  .btn-ghost:hover{ background:var(--ink); color:#fff; }
+  .btn-ghost.on-dark{ color:#fff; border-color:rgba(255,255,255,.7); }
+  .btn-ghost.on-dark:hover{ background:#fff; color:var(--ink); border-color:#fff; }
+  .textlink{
+    display:inline-flex; align-items:center; gap:9px; font-size:13px; font-weight:700;
+    letter-spacing:.14em; text-transform:uppercase; color:var(--orange);
+  }
+  .textlink .arr{ transition:transform .25s ease; }
+  .textlink:hover .arr{ transform:translateX(5px); }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:60; background:#fff;
+    border-bottom:1px solid var(--hair);
+  }
+  .nav-inner{ height:80px; display:flex; align-items:center; gap:40px; }
+  .nav-logo img{ height:34px; width:auto; }
+  .nav-links{ margin-left:auto; display:flex; align-items:center; align-self:stretch; gap:30px; }
+  .nav-links a{
+    font-size:12.5px; font-weight:700; letter-spacing:.13em; text-transform:uppercase;
+    color:var(--ink); transition:color .2s;
+  }
+  .nav-links a:hover{ color:var(--orange); }
+  .nav-cta{
+    background:var(--orange); color:#fff !important; padding:11px 20px;
+    letter-spacing:.13em;
+  }
+  .nav-cta:hover{ background:var(--orange-deep); color:#fff !important; }
+
+  /* nav dropdown */
+  .nav-item{ position:relative; display:flex; align-items:center; align-self:stretch; }
+  .has-dropdown > a{ display:inline-flex; align-items:center; gap:7px; }
+  .has-dropdown > a::after{ content:""; width:6px; height:6px; border-right:2px solid currentColor;
+    border-bottom:2px solid currentColor; transform:rotate(45deg) translateY(-1px); opacity:.65; transition:transform .2s; }
+  .has-dropdown:hover > a::after, .has-dropdown:focus-within > a::after{ transform:rotate(225deg) translateY(-3px); }
+  .dropdown{ position:absolute; top:100%; left:-18px; min-width:212px; background:#fff;
+    border:1px solid var(--hair); border-top:3px solid var(--orange); box-shadow:0 18px 40px -16px rgba(0,0,0,.32);
+    padding:8px 0; opacity:0; visibility:hidden; transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease, visibility .2s; z-index:70; }
+  .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown{ opacity:1; visibility:visible; transform:translateY(0); }
+  .dropdown a{ display:block; padding:11px 22px; font-size:12px; font-weight:700; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink); white-space:nowrap; transition:background .18s, color .18s; }
+  .dropdown a:hover{ background:var(--backdrop); color:var(--orange); }
+  .dropdown-right{ left:auto; right:0; }
+
+  /* ---------- ticker ---------- */
+  .ticker{ background:var(--charcoal); color:#fff; overflow:hidden; height:45px;
+    display:flex; align-items:center; white-space:nowrap; }
+  .ticker-track{ display:inline-flex; align-items:center; will-change:transform;
+    animation:tickerscroll 38s linear infinite; }
+  .ticker:hover .ticker-track{ animation-play-state:paused; }
+  .ticker-item{ display:inline-flex; align-items:center; gap:10px; padding:0 30px;
+    font-size:13px; letter-spacing:.02em; }
+  .ticker-item .lbl{ color:rgba(255,255,255,.78); }
+  .ticker-item .val{ color:var(--orange); font-weight:700; }
+  .ticker-sep{ width:5px; height:5px; transform:rotate(45deg); background:var(--orange);
+    opacity:.85; flex:0 0 auto; }
+  @keyframes tickerscroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- hero ---------- */
+  .hero{ position:relative; min-height:600px; display:flex; align-items:center;
+    color:#fff; overflow:hidden; }
+  .hero-bg{ position:absolute; inset:0; background:url('assets/hero.jpg') center 38%/cover no-repeat; }
+  .hero-bg::after{ content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg, rgba(20,22,26,.82) 0%, rgba(20,22,26,.55) 45%, rgba(20,22,26,.15) 100%); }
+  .hero .wrap{ position:relative; z-index:2; width:100%; padding-top:92px; padding-bottom:92px; }
+  .hero .eyebrow{ color:#fff; }
+  .hero .eyebrow::before{ background:var(--orange); }
+  .hero h1{
+    font-size:64px; line-height:1.08; font-weight:700; letter-spacing:-.015em;
+    margin:0 0 38px; max-width:none; text-shadow:0 2px 24px rgba(0,0,0,.25);
+  }
+  .hero h1 .accent{ color:var(--orange); }
+  .hero-actions{ display:flex; gap:30px; align-items:center; flex-wrap:wrap; }
+  .hero-textlink{ display:inline-flex; align-items:center; gap:10px; height:46px;
+    font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:#fff; }
+  .hero-textlink .arr{ transition:transform .25s ease; }
+  .hero-textlink:hover .arr{ transform:translateX(5px); }
+
+  /* ---------- about band ---------- */
+  .about{ background:var(--backdrop); }
+  .about .wrap{ padding:54px var(--pad); display:grid; grid-template-columns:1fr auto;
+    gap:48px; align-items:start; }
+  .about-copy{ display:flex; flex-direction:column; gap:18px; max-width:1040px; }
+  .about p{ margin:0; font-size:16.5px; line-height:1.72; color:var(--charcoal); }
+  .about .textlink{ white-space:nowrap; margin-top:4px; }
+
+  /* ---------- section frame ---------- */
+  section.block{ padding:96px 0; }
+  .block-head{ margin-bottom:54px; }
+
+  /* ---------- investment highlights ---------- */
+  .highlights{ position:relative; background:#fff; overflow:hidden; }
+  .highlights .map-underlay{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    opacity:.5; pointer-events:none; z-index:0;
+  }
+  .highlights .wrap{ position:relative; z-index:2; }
+  .hl-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+    background-color:#ffffff;
+    border:1px solid var(--hair); }
+  .hl-card{
+    position:relative; background:#ffffff; padding:38px 36px 40px; min-height:268px;
+    display:flex; flex-direction:column; transition:transform .28s ease, box-shadow .28s ease, background .28s ease;
+  }
+  .hl-card .num{
+    font-size:62px; line-height:1; font-weight:300; color:var(--mist);
+    margin-bottom:20px; transition:color .28s ease; letter-spacing:-.02em;
+  }
+  .hl-card .ttl{ font-size:21px; line-height:1.28; font-weight:700; color:var(--ink);
+    margin:0 0 10px; max-width:22ch; }
+  .hl-card .desc{ font-size:15px; line-height:1.6; color:var(--charcoal); margin:0; max-width:34ch; }
+  .hl-card ul{ list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:11px; }
+  .hl-card li{ position:relative; padding-left:19px; font-size:14px; line-height:1.5; color:var(--charcoal); max-width:34ch; }
+  .hl-card li::before{ content:""; position:absolute; left:1px; top:7px; width:6px; height:6px;
+    background:var(--orange); transform:rotate(45deg); }
+  .hl-card .toprule{ position:absolute; top:-1px; left:0; height:3px; width:0;
+    background:var(--orange); transition:width .3s ease; }
+  .hl-card:hover{ background:var(--mist); transform:translateY(-8px);
+    box-shadow:0 24px 50px -22px rgba(0,0,0,.35); z-index:3; }
+  .hl-card:hover .num{ color:#fff; }
+  .hl-card:hover .toprule{ width:100%; }
+
+  /* ---------- projects ---------- */
+  .projects{ background:#fff; }
+  .proj-map{ margin-top:18px; }
+  .proj-map img{ width:100%; height:auto; display:block; }
+  .proj-legend{ display:flex; gap:34px; flex-wrap:wrap; margin-top:26px; }
+  .proj-legend .li{ display:flex; align-items:center; gap:11px; font-size:14px; color:var(--charcoal); }
+  .proj-legend .dia{ width:13px; height:13px; transform:rotate(45deg); background:var(--orange); flex:0 0 auto; }
+
+  /* ---------- leadership ---------- */
+  .leaders{ background:var(--paper); }
+  .board-grid{ display:grid; grid-template-columns:repeat(6,1fr); gap:26px; margin-top:8px; }
+  .member{ text-align:center; }
+  .member .ph{ width:100%; aspect-ratio:1; border-radius:50%; overflow:hidden;
+    background:var(--mist); margin-bottom:18px; }
+  .member .ph img{ width:100%; height:100%; object-fit:cover; filter:grayscale(100%); }
+  .member .nm{ font-size:16.5px; font-weight:700; color:var(--ink); margin:0 0 4px; }
+  .member .rl{ font-size:12.5px; line-height:1.4; color:var(--slate); margin:0; letter-spacing:.01em; }
+  .leaders .foot{ margin-top:54px; }
+
+  /* ---------- news ---------- */
+  .news{ background:var(--backdrop); }
+  .news-grid{ display:grid; grid-template-columns:1.55fr 1fr 1fr; gap:24px; margin-top:6px; }
+  .ncard{ position:relative; min-height:392px; overflow:hidden; color:#fff;
+    display:flex; align-items:flex-end; border-top:3px solid var(--orange); }
+  .ncard img.bg{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+  .ncard .scrim{ position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(20,22,26,0) 28%, rgba(20,22,26,.55) 60%, rgba(18,19,22,.9) 100%);
+    transition:background .3s ease; }
+  .ncard:hover .scrim{ background:linear-gradient(180deg, rgba(15,16,19,.25) 0%, rgba(15,16,19,.7) 55%, rgba(12,13,15,.96) 100%); }
+  .ncard:hover img.bg{ transform:scale(1.05); }
+  .ncard .body{ position:relative; z-index:2; padding:34px 32px 32px; }
+  .ncard .meta{ display:flex; gap:12px; align-items:center; font-size:11.5px; font-weight:700;
+    letter-spacing:.13em; text-transform:uppercase; margin-bottom:14px; }
+  .ncard .meta .date{ color:var(--orange); }
+  .ncard .meta .src{ color:rgba(255,255,255,.72); }
+  .ncard .meta .src::before{ content:"·"; margin-right:12px; color:rgba(255,255,255,.5); }
+  .ncard h3{ font-size:20px; line-height:1.28; font-weight:700; margin:0 0 18px; }
+  .ncard.feat h3{ font-size:25px; max-width:18ch; }
+  .ncard.feat .scrim{ background:linear-gradient(180deg, rgba(18,20,24,.45) 0%, rgba(18,20,24,.35) 35%, rgba(16,17,20,.75) 65%, rgba(14,15,18,.95) 100%); }
+  .ncard.feat:hover .scrim{ background:linear-gradient(180deg, rgba(14,15,18,.6) 0%, rgba(14,15,18,.55) 35%, rgba(12,13,15,.85) 65%, rgba(10,11,13,.97) 100%); }
+  .ncard .rm{ font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:#fff; display:inline-flex; gap:8px; align-items:center; }
+  .ncard .rm .arr{ transition:transform .25s; }
+  .ncard:hover .rm .arr{ transform:translateX(5px); }
+  .news .foot{ margin-top:46px; }
+
+  /* ---------- investor centre ---------- */
+  .investor{ background:#fff; }
+  .inv-grid{ display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+  .inv-left h2{ font-size:38px; font-weight:700; margin:0 0 18px; letter-spacing:-.01em; }
+  .inv-left h2 .accent{ color:var(--orange); }
+  .inv-left p.body{ font-size:16px; line-height:1.65; color:var(--charcoal); max-width:46ch; margin:0 0 38px; }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:34px 40px; margin-bottom:40px; max-width:430px; }
+  .stat .v{ font-size:30px; font-weight:700; color:var(--ink); letter-spacing:-.01em; }
+  .stat .k{ font-size:12.5px; letter-spacing:.04em; color:var(--slate); margin-top:5px; }
+  .inv-right .col-title{ font-size:13px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--orange); margin:6px 0 22px; display:flex; align-items:center; gap:14px; }
+  .inv-right .col-title::before{ content:""; width:28px; height:3px; background:var(--orange); }
+  .ann{ display:flex; justify-content:space-between; gap:24px; align-items:baseline;
+    padding:19px 0; border-top:1px solid var(--hair); transition:padding-left .25s ease; }
+  .ann:last-of-type{ border-bottom:1px solid var(--hair); }
+  .ann:hover{ padding-left:8px; }
+  .ann .at{ font-size:15.5px; font-weight:600; color:var(--ink); }
+  .ann:hover .at{ color:var(--orange-deep); }
+  .ann .ad{ font-size:13px; color:var(--slate); white-space:nowrap; }
+  .inv-right .foot{ margin-top:30px; }
+
+  /* ---------- newsletter ---------- */
+  .signup{ background:var(--charcoal); color:#fff; }
+  .signup .wrap{ padding:72px var(--pad); display:grid; grid-template-columns:.85fr 1.15fr;
+    gap:60px; align-items:center; }
+  .signup .eyebrow{ color:var(--orange); }
+  .signup h2{ font-size:38px; font-weight:700; margin:0 0 16px; letter-spacing:-.01em; }
+  .signup p{ font-size:16px; line-height:1.6; color:rgba(255,255,255,.78); margin:0; max-width:42ch; }
+  .form{ display:grid; grid-template-columns:1fr 1fr; gap:18px 20px; }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field.full{ grid-column:1 / -1; }
+  .field label{ font-size:12px; letter-spacing:.04em; color:rgba(255,255,255,.7); }
+  .field input{ height:46px; background:transparent; border:none; border-bottom:1.5px solid rgba(255,255,255,.34);
+    color:#fff; font-family:var(--sans); font-size:15px; padding:0 2px; }
+  .field input:focus{ outline:none; border-color:var(--orange); }
+  .field input::placeholder{ color:rgba(255,255,255,.4); }
+  .form .submit-row{ grid-column:1 / -1; display:flex; justify-content:flex-end; margin-top:6px; }
+
+  /* ---------- footer ---------- */
+  footer.foot{ background:#fff; border-top:1px solid var(--hair); padding:72px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr 1fr; gap:40px; }
+  .foot-brand img{ height:30px; margin-bottom:22px; }
+  .foot-brand p{ font-size:13.5px; line-height:1.62; color:var(--slate); max-width:34ch; margin:0 0 18px; }
+  .foot-brand .asx{ font-size:13px; font-weight:700; letter-spacing:.1em; color:var(--orange); }
+  .foot-social{ display:flex; align-items:center; gap:14px; margin-top:22px; }
+  .foot-social a{ display:block; transition:opacity .2s; }
+  .foot-social a:hover{ opacity:.6; }
+  .foot-social img{ height:26px; width:auto; display:block; }
+  .foot-col h4{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink); margin:4px 0 18px; }
+  .foot-col a{ display:block; font-size:14px; color:var(--slate); padding:6px 0; transition:color .2s; }
+  .foot-col a:hover{ color:var(--orange); }
+  .foot-bottom{ display:flex; justify-content:space-between; align-items:center;
+    margin-top:56px; padding-top:24px; border-top:1px solid var(--hair); }
+  .foot-bottom span{ font-size:12.5px; color:var(--slate); }
+  .foot-jmm{ display:block; transition:opacity .2s; }
+  .foot-jmm:hover{ opacity:.65; }
+  .foot-jmm img{ height:20px; width:auto; display:block; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:1180px){
+    .board-grid{ grid-template-columns:repeat(3,1fr); }
+    .news-grid{ grid-template-columns:1fr 1fr; }
+    .ncard.feat{ grid-column:1 / -1; }
+  }
+  @media (max-width:900px){
+    :root{ --pad:28px; }
+    .nav-links{ display:none; }
+    .hero h1{ font-size:46px; }
+    h2.section-title{ font-size:34px; }
+    .hl-grid{ grid-template-columns:1fr 1fr; }
+    .inv-grid, .signup .wrap, .about .wrap{ grid-template-columns:1fr; gap:34px; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    .highlights .map-underlay{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#4A4A4A"/>
+    <circle cx="50" cy="42" r="17" fill="none" stroke="#E07C30" stroke-width="3"/>
+    <circle cx="50" cy="42" r="9" fill="none" stroke="#E07C30" stroke-width="3"/>
+    <circle cx="50" cy="42" r="2.5" fill="#E07C30"/>
+    <text x="50" y="74" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1" text-anchor="middle">CONRAD</text>
+    <text x="50" y="86" fill="#E07C30" font-family="Helvetica, Arial, sans-serif" font-size="6" font-weight="700" letter-spacing="2" text-anchor="middle">ASIA ENERGY</text>
+  </svg>
+</template>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#" aria-label="Conrad Asia Energy"><img src="assets/logo-fullcolour.png" alt="Conrad Asia Energy Ltd"></a>
+    <nav class="nav-links">
+      <div class="nav-item has-dropdown">
+        <a href="Conrad Who We Are.html">Who We Are</a>
+        <div class="dropdown">
+          <a href="Conrad Who We Are.html#foundations">Foundations</a>
+          <a href="Conrad Who We Are.html#values">Values</a>
+          <a href="Conrad Who We Are.html#history">History</a>
+          <a href="Conrad Who We Are.html#strategy">Strategy</a>
+          <a href="Conrad Who We Are.html#structure">Structure</a>
+          <a href="Board and Management.html#board">Board</a>
+          <a href="Board and Management.html#management">Management</a>
+        </div>
+      </div>
+      <div class="nav-item has-dropdown">
+        <a href="What We Do Project Overview.html">What We Do</a>
+        <div class="dropdown">
+          <a href="What We Do Project Overview.html">Project Overview</a>
+          <a href="What We Do Duyung PSC.html">Duyung PSC</a>
+          <a href="What We Do Aceh PSCs.html">Aceh PSCs</a>
+          <a href="What We Do Reserves and Resources.html">Reserves &amp; Resources</a>
+        </div>
+      </div>
+      <a href="Governance.html">Governance</a>
+      <a href="Careers.html">Careers</a>
+      <a href="#news">News</a>
+      <a href="Contact.html">Contact</a>
+      <div class="nav-item has-dropdown">
+        <a class="nav-cta" href="#investor">Investors</a>
+        <div class="dropdown dropdown-right">
+          <a href="Investor Stock Price.html">Stock Price</a>
+          <a href="Investor Financial Reports.html">Financial Reports</a>
+          <a href="Investor Presentations.html">Presentations</a>
+          <a href="Investor ASX Announcements.html">ASX Announcements</a>
+          <a href="Investor Analyst Coverage.html">Analyst Coverage</a>
+          <a href="Media.html">Media</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== TICKER ===================== -->
+<div class="ticker" aria-label="Key facts">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" data-screen-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div class="eyebrow">ASX Listed · Offshore Indonesia · Natural Gas</div>
+    <h1>Pure Play Exposure to<br><span class="accent">Asia's Energy Growth</span><br>— the Fastest in the World</h1>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#projects">Explore Our Projects</a>
+      <a class="hero-textlink" href="#investor">Investor Centre <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT BAND ===================== -->
+<div class="about">
+  <div class="wrap">
+    <div class="about-copy">
+      <p>Conrad Asia Energy Ltd is a Southeast Asian upstream oil &amp; gas company led by a strong senior management team with proven technical, operational and financial expertise. Conrad is headquartered in Singapore and listed on the Australian Securities Exchange (ASX:CRD) since 2022.</p>
+      <p>Conrad has a strong operational presence in Indonesia where it operates 3 production sharing contracts (PSCs). Conrad's Mako Gas Project in the Duyung PSC is fully funded and on-track to deliver first gas by end-2027. Conrad also has 100% interest in 2 PSCs in Aceh with 4 existing gas discoveries. With the Mako project underway, Conrad is commencing commercialization activities on the Aceh PSCs as well as actively evaluating other inorganic growth opportunities more broadly in Southeast Asia.</p>
+    </div>
+    <a class="textlink" href="#projects">View All Projects <span class="arr">→</span></a>
+  </div>
+</div>
+
+<!-- ===================== INVESTMENT HIGHLIGHTS ===================== -->
+<section class="block highlights" data-screen-label="Investment Highlights">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow">Why Invest</div>
+      <h2 class="section-title">Investment <span class="accent">Highlights</span></h2>
+      <p class="lead">A focused portfolio of natural gas assets positioned at the intersection of Asia's fastest-growing demand market and proven offshore production capability.</p>
+    </div>
+    <div class="hl-grid">
+      <article class="hl-card"><span class="toprule"></span><div class="num">01</div><h3 class="ttl">Offshore Asian Gas for the World's Largest Growing Market</h3><ul><li>Direct, undiluted access to Southeast Asia's fastest-growing energy market</li><li>Anchored by shallow-water Indonesian gas assets</li></ul></article>
+      <article class="hl-card"><span class="toprule"></span><div class="num">02</div><h3 class="ttl">Compelling Regional Market Fundamentals</h3><ul><li>Strong and reliable gas price dynamics</li><li>Mako gas to be sold in Indonesia, but at an internationally-linked price comparable to selling to Singapore</li></ul></article>
+      <article class="hl-card"><span class="toprule"></span><div class="num">03</div><h3 class="ttl">Mako Gas Field FID Reached March 2026</h3><ul><li>Operational cash flow from 4Q 2026, with Mako expected to produce ~US$3bn in gross revenue over the Duyung PSC term</li><li>Execution on track, with first gas expected 4Q 2027</li></ul></article>
+      <article class="hl-card"><span class="toprule"></span><div class="num">04</div><h3 class="ttl">Near-term De-risking Goals in Progress</h3><p class="desc">A clear roadmap of milestones to de-risk the Mako development and add value to the growing portfolio of exploration opportunities.</p></article>
+      <article class="hl-card"><span class="toprule"></span><div class="num">05</div><h3 class="ttl">Growth Upside via the Aceh PSCs</h3><ul><li>11+ Tcf exploration upside in Aceh</li><li>Two newly-awarded PSCs covering shallow- and deep-water acreage provide substantial resource growth potential</li></ul></article>
+      <article class="hl-card"><span class="toprule"></span><div class="num">06</div><h3 class="ttl">Proven Board &amp; Management Team</h3><p class="desc">Led by executives with deep regional expertise and a track record of value creation across Southeast Asian energy markets.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section class="block projects" id="projects" data-screen-label="Our Projects">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow">Portfolio</div>
+      <h2 class="section-title">Our <span class="accent">Projects</span></h2>
+      <p class="lead">Three operated production sharing contracts across offshore Indonesia — anchored by the fully-funded Mako Gas Field and the high-potential Aceh exploration acreage.</p>
+    </div>
+    <div class="proj-map">
+      <img src="assets/project-map.png" alt="Map of Conrad Asia Energy projects across offshore Indonesia: Mako Gas Field in the Duyung PSC, and the Offshore North West and South West Aceh PSCs.">
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LEADERSHIP ===================== -->
+<section class="block leaders" data-screen-label="Our Board">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow">Leadership</div>
+      <h2 class="section-title">Our <span class="accent">Board</span></h2>
+      <p class="lead">An experienced team with a proven track record of value creation in Asian energy markets.</p>
+    </div>
+    <div class="board-grid">
+      <div class="member"><div class="ph"><img src="assets/peter.png" alt="Peter Botten"></div><p class="nm">Peter Botten</p><p class="rl">Executive Chairman</p></div>
+      <div class="member"><div class="ph"><img src="assets/miltos.png" alt="Miltos Xynogalas"></div><p class="nm">Miltos Xynogalas</p><p class="rl">Founder, MD &amp; CEO</p></div>
+      <div class="member"><div class="ph"><img src="assets/david.png" alt="David Johnson"></div><p class="nm">David Johnson</p><p class="rl">Exec Director &amp; COO</p></div>
+      <div class="member"><div class="ph"><img src="assets/paul.png" alt="Paul Bernard"></div><p class="nm">Paul Bernard</p><p class="rl">Non-Executive Director</p></div>
+      <div class="member"><div class="ph"><img src="assets/jeremy.png" alt="Jeremy Brest"></div><p class="nm">Jeremy Brest</p><p class="rl">Non-Executive Director</p></div>
+      <div class="member"><div class="ph"><img src="assets/mario.png" alt="Mario Traviati"></div><p class="nm">Mario Traviati</p><p class="rl">Non-Executive Director</p></div>
+    </div>
+    <div class="foot"><a class="btn btn-primary" href="#">Meet the Team</a></div>
+  </div>
+</section>
+
+<!-- ===================== NEWS ===================== -->
+<section class="block news" id="news" data-screen-label="Latest News">
+  <div class="wrap">
+    <div class="block-head">
+      <div class="eyebrow">Media &amp; News</div>
+      <h2 class="section-title">Latest <span class="accent">News</span></h2>
+    </div>
+    <div class="news-grid">
+      <article class="ncard feat">
+        <img class="bg" src="assets/news.jpg" alt="">
+        <div class="scrim"></div>
+        <div class="body">
+          <div class="meta"><span class="date">01 May 2026</span><span class="src">Energy Council</span></div>
+          <h3>Conrad Asia Energy: Driving the Indonesia Gas Project — Energy Security for a Growing Region</h3>
+          <a class="rm" href="#">Read More <span class="arr">→</span></a>
+        </div>
+      </article>
+      <article class="ncard">
+        <img class="bg" src="assets/news.jpg" alt="" style="object-position:75% 50%;">
+        <div class="scrim"></div>
+        <div class="body">
+          <div class="meta"><span class="date">05 Mar 2026</span><span class="src">Upstream Online</span></div>
+          <h3>Conrad Advances Indonesia Gas Project Toward FID</h3>
+          <a class="rm" href="#">Read More <span class="arr">→</span></a>
+        </div>
+      </article>
+      <article class="ncard">
+        <img class="bg" src="assets/news.jpg" alt="" style="object-position:25% 50%;">
+        <div class="scrim"></div>
+        <div class="body">
+          <div class="meta"><span class="date">13 Nov 2023</span><span class="src">ASX Release</span></div>
+          <h3>Aceh Prospective Resources in Excess of 11 Tcf Net</h3>
+          <a class="rm" href="#">Read More <span class="arr">→</span></a>
+        </div>
+      </article>
+    </div>
+    <div class="foot"><a class="btn btn-primary" href="#">All News</a></div>
+  </div>
+</section>
+
+<!-- ===================== INVESTOR CENTRE ===================== -->
+<section class="block investor" id="investor" data-screen-label="Investor Centre">
+  <div class="wrap inv-grid">
+    <div class="inv-left">
+      <div class="eyebrow">Investor Centre</div>
+      <h2>Conrad on the <span class="accent">ASX</span></h2>
+      <p class="body">Conrad Asia Energy is listed on the Australian Securities Exchange under the ticker CRD.</p>
+      <div class="stat-grid">
+        <div class="stat"><div class="v">CRD</div><div class="k">Exchange ticker</div></div>
+        <div class="stat"><div class="v">$0.475</div><div class="k">Latest price</div></div>
+        <div class="stat"><div class="v">330 bfc</div><div class="k">Gross 2P reserves</div></div>
+        <div class="stat"><div class="v">Q4 2027</div><div class="k">First gas target</div></div>
+      </div>
+      <a class="btn btn-primary" href="Investor Stock Price.html">Investor Centre</a>
+    </div>
+    <div class="inv-right">
+      <div class="col-title">Latest Announcements</div>
+      <div class="ann"><span class="at">Quarterly Activities Report and Appendix 5B</span><span class="ad">29 Apr 2026</span></div>
+      <div class="ann"><span class="at">Mako Gas Project — Final Investment Decision</span><span class="ad">05 Mar 2026</span></div>
+      <div class="ann"><span class="at">Investor Presentation — March 2026</span><span class="ad">03 Mar 2026</span></div>
+      <div class="ann"><span class="at">Appendix 3B — Issue of Securities</span><span class="ad">18 Feb 2026</span></div>
+      <div class="foot"><a class="textlink" href="#">Read All Announcements <span class="arr">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<div class="signup" data-screen-label="Stay In Touch">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Updates</div>
+      <h2>Stay In Touch</h2>
+      <p>Get our latest news, project updates and announcements delivered straight to your inbox.</p>
+    </div>
+    <form class="form" onsubmit="return false;">
+      <div class="field"><label>First name</label><input type="text" placeholder="Jane"></div>
+      <div class="field"><label>Last name</label><input type="text" placeholder="Doe"></div>
+      <div class="field full"><label>Email</label><input type="email" placeholder="jane@company.com"></div>
+      <div class="submit-row"><button class="btn btn-primary" type="submit">Subscribe</button></div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo-fullcolour.png" alt="Conrad Asia Energy Ltd">
+        <p>Developing natural gas resources in Southeast Asia — supplying affordable, low-carbon energy to the world's fastest growing market.</p>
+        <div class="asx">ASX: CRD</div>
+        <div class="foot-social">
+          <a href="#" aria-label="Conrad Asia Energy on X"><img src="assets/x-icon.svg" alt="X"></a>
+          <a href="#" aria-label="Conrad Asia Energy on LinkedIn"><img src="assets/linkedin-icon.svg" alt="LinkedIn"></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="Conrad Who We Are.html">Who We Are</a><a href="What We Do Project Overview.html">What We Do</a><a href="Governance.html">Governance</a>
+        <a href="#news">News</a><a href="Careers.html">Careers</a><a href="Contact.html">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Projects</h4>
+        <a href="#projects">Mako Gas Field</a><a href="#projects">Offshore North West Aceh PSC</a>
+        <a href="#projects">Offshore South West Aceh PSC</a><a href="#">Reserves &amp; Resources</a>
+      </div>
+      <div class="foot-col">
+        <h4>Investors</h4>
+        <a href="Investor Stock Price.html">Stock Price</a><a href="Investor Financial Reports.html">Financial Reports</a>
+        <a href="Investor Presentations.html">Presentations</a><a href="Investor ASX Announcements.html">ASX Announcements</a><a href="Investor Analyst Coverage.html">Analyst Coverage</a><a href="Media.html">Media</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="#">Disclaimer</a><a href="#">Privacy Policy</a><a href="#">Fraudulent Job Offers</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Conrad Asia Energy Ltd. All rights reserved.</span>
+      <a class="foot-jmm" href="https://www.jmmdigital.com.au" target="_blank" rel="noopener" aria-label="Website by JMM Digital"><img src="assets/jmm-digital.svg" alt="Website by JMM Digital"></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---- Ticker: build items + duplicate for seamless loop ----
+  (function(){
+    var items = [
+      {l:"ASX", v:"CRD"},
+      {l:"Aceh PSCs — Prospective Resources", v:"&gt;11 Tcf Net"},
+      {l:"Duyung PSC — Conrad Interest", v:"76.5%"},
+      {l:"FID March 2026 — First Gas Target", v:"4Q27"},
+      {l:"Mako 2C Resources", v:"330 bfc"}
+    ];
+    function build(){
+      return items.map(function(it){
+        return '<span class="ticker-item"><span class="lbl">'+it.l+'</span> <span class="val">'+it.v+'</span></span><span class="ticker-sep"></span>';
+      }).join('');
+    }
+    // two copies => translateX(-50%) loops seamlessly
+    document.getElementById('tickerTrack').innerHTML = build()+build();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock Price — Conrad Asia Energy Ltd</title>
+<link rel="stylesheet" href="assets/investor.css">
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="Conrad Homepage.html" aria-label="Conrad Asia Energy"><img src="assets/logo-fullcolour.png" alt="Conrad Asia Energy Ltd"></a>
+    <nav class="nav-links">
+      <div class="nav-item has-dropdown">
+        <a href="Conrad Who We Are.html">Who We Are</a>
+        <div class="dropdown">
+          <a href="Conrad Who We Are.html#foundations">Foundations</a>
+          <a href="Conrad Who We Are.html#values">Values</a>
+          <a href="Conrad Who We Are.html#history">History</a>
+          <a href="Conrad Who We Are.html#strategy">Strategy</a>
+          <a href="Conrad Who We Are.html#structure">Structure</a>
+          <a href="Board and Management.html#board">Board</a>
+          <a href="Board and Management.html#management">Management</a>
+        </div>
+      </div>
+      <div class="nav-item has-dropdown">
+        <a href="What We Do Project Overview.html">What We Do</a>
+        <div class="dropdown">
+          <a href="What We Do Project Overview.html">Project Overview</a>
+          <a href="What We Do Duyung PSC.html">Duyung PSC</a>
+          <a href="What We Do Aceh PSCs.html">Aceh PSCs</a>
+          <a href="What We Do Reserves and Resources.html">Reserves &amp; Resources</a>
+        </div>
+      </div>
+      <a href="Governance.html">Governance</a>
+      <a href="Careers.html">Careers</a>
+      <a href="Media.html">News</a>
+      <a href="Contact.html">Contact</a>
+      <div class="nav-item has-dropdown">
+        <a class="nav-cta active" href="Investor Stock Price.html">Investors</a>
+        <div class="dropdown dropdown-right">
+          <a class="active" href="Investor Stock Price.html">Stock Price</a>
+          <a href="Investor Financial Reports.html">Financial Reports</a>
+          <a href="Investor Presentations.html">Presentations</a>
+          <a href="Investor ASX Announcements.html">ASX Announcements</a>
+          <a href="Investor Analyst Coverage.html">Analyst Coverage</a>
+          <a href="Media.html">Media</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== TICKER ===================== -->
+<div class="ticker" aria-label="Key facts"><div class="ticker-track" id="tickerTrack"></div></div>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" data-screen-label="Investor Hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <h1><span class="hero-ic">Investor <span class="accent">Centre</span></span><span class="hero-page">Stock Price</span></h1>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="Conrad Homepage.html#projects">Explore Our Projects</a>
+      <a class="hero-textlink" href="Conrad Homepage.html#news">View Latest News <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INVESTOR CENTRE — STOCK PRICE ===================== -->
+<section class="inv-section" data-screen-label="Stock Price">
+  <div class="wrap inv-layout">
+    <div class="inv-main">
+      <div class="inv-head">
+        <div class="eyebrow">Investor Centre</div>
+        <h1>Stock <span class="accent">Price</span></h1>
+      </div>
+      <p class="sp-intro">Conrad Asia Energy is listed on the Australian Stock Exchange.</p>
+
+      <!-- Live values: to be fed by market-data provider -->
+      <!-- Live values via YourIR: the data-yourir attributes are auto-populated by the
+           YourIR script (see loader at end of file). The numbers below are static
+           fallbacks shown until the feed loads. -->
+      <div class="sp-stats">
+        <div class="sp-stat"><div class="v" data-yourir="lastPrice">$0.480</div><div class="k">Latest Price</div></div>
+        <div class="sp-stat"><div class="v">CRD</div><div class="k">Exchange Ticker</div></div>
+        <div class="sp-stat"><div class="v" data-yourir="priceChangePercentage">2.0%</div><div class="k">Percent Change from last Close</div></div>
+        <div class="sp-stat"><div class="v" data-yourir="volume">$0.475</div><div class="k">Average Volume</div></div>
+        <div class="sp-stat"><div class="v" data-yourir="high">$0.480</div><div class="k">Daily High</div></div>
+        <div class="sp-stat"><div class="v" data-yourir="low">$0.475</div><div class="k">Daily Low</div></div>
+      </div>
+
+      <!-- YourIR price comparison chart (priceComparisonChart1). YourIR draws the live
+           plot into [data-yourir="plots"] and drives the Range / Show buttons once its
+           loader runs. The placeholder SVG + fallback dates keep the mock readable
+           until the feed loads. -->
+      <div class="chart-wrap pricecompchart">
+        <div data-yourir="priceComparisonChart1 range=12m">
+          <p class="chart-title">Share price from <span data-yourir="displayedRange.from">22nd May 2025</span> to <span data-yourir="displayedRange.to">22nd May 2026</span></p>
+          <div class="price-chart" data-yourir="plots">
+            <div class="chart-area"><svg id="spChart" viewBox="0 0 1000 340" role="img" aria-label="Conrad Asia Energy share price chart (placeholder)"></svg></div>
+          </div>
+          <div class="chart-ctl"><b>Range</b>
+            <button data-yourir="range" value="1d" class="price-chart-btn">Today</button>
+            <button data-yourir="range" value="1m" class="price-chart-btn">1 mth</button>
+            <button data-yourir="range" value="3m" class="price-chart-btn">3 mths</button>
+            <button data-yourir="range" value="6m" class="price-chart-btn">6 mths</button>
+            <button data-yourir="range" value="1y" class="price-chart-btn yourir-active">1 yr</button>
+            <button data-yourir="range" value="2y" class="price-chart-btn">2 yrs</button>
+            <button data-yourir="range" value="5y" class="price-chart-btn">5 yrs</button>
+            <button data-yourir="range" value="99y" class="price-chart-btn">max</button>
+          </div>
+          <div class="chart-ctl"><b>Show</b>
+            <button data-yourir="volume.visible" class="volume price-chart-btn yourir-active">Volume</button>
+            <button data-yourir="announcements.visible" class="news price-chart-btn yourir-active">News</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="inv-aside">
+      <nav class="inv-subnav">
+        <a class="active" href="Investor Stock Price.html">Stock Price</a>
+        <a href="Investor Financial Reports.html">Financial Reports</a>
+        <a href="Investor Presentations.html">Presentations</a>
+        <a href="Investor ASX Announcements.html">ASX Announcements</a>
+        <a href="Investor Analyst Coverage.html">Analyst Coverage</a>
+      </nav>
+    </aside>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER ===================== -->
+<div class="signup" data-screen-label="Stay In Touch">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Updates</div>
+      <h2>Stay In Touch</h2>
+      <p>Get our latest news, project updates and announcements delivered straight to your inbox.</p>
+    </div>
+    <form class="form" onsubmit="return false;">
+      <div class="field"><label>First name</label><input type="text" placeholder="Jane"></div>
+      <div class="field"><label>Last name</label><input type="text" placeholder="Doe"></div>
+      <div class="field full"><label>Email</label><input type="email" placeholder="jane@company.com"></div>
+      <div class="submit-row"><button class="btn btn-primary" type="submit">Subscribe</button></div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo-fullcolour.png" alt="Conrad Asia Energy Ltd">
+        <p>Developing natural gas resources in Southeast Asia — supplying affordable, low-carbon energy to the world's fastest growing market.</p>
+        <div class="asx">ASX: CRD</div>
+        <div class="foot-social">
+          <a href="#" aria-label="Conrad Asia Energy on X"><img src="assets/x-icon.svg" alt="X"></a>
+          <a href="#" aria-label="Conrad Asia Energy on LinkedIn"><img src="assets/linkedin-icon.svg" alt="LinkedIn"></a>
+        </div>
+      </div>
+      <div class="foot-col"><h4>Company</h4>
+        <a href="Conrad Who We Are.html">Who We Are</a><a href="What We Do Project Overview.html">What We Do</a><a href="Governance.html">Governance</a>
+        <a href="Media.html">News</a><a href="Careers.html">Careers</a><a href="Contact.html">Contact</a>
+      </div>
+      <div class="foot-col"><h4>Projects</h4>
+        <a href="Conrad Homepage.html#projects">Mako Gas Field</a><a href="Conrad Homepage.html#projects">Offshore North West Aceh PSC</a>
+        <a href="Conrad Homepage.html#projects">Offshore South West Aceh PSC</a><a href="#">Reserves &amp; Resources</a>
+      </div>
+      <div class="foot-col"><h4>Investors</h4>
+        <a href="Investor Stock Price.html">Stock Price</a><a href="Investor Financial Reports.html">Financial Reports</a>
+        <a href="Investor Presentations.html">Presentations</a><a href="Investor ASX Announcements.html">ASX Announcements</a><a href="Investor Analyst Coverage.html">Analyst Coverage</a><a href="Media.html">Media</a>
+      </div>
+      <div class="foot-col"><h4>Legal</h4>
+        <a href="#">Disclaimer</a><a href="#">Privacy Policy</a><a href="#">Fraudulent Job Offers</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Conrad Asia Energy Ltd. All rights reserved.</span>
+      <a class="foot-jmm" href="https://www.jmmdigital.com.au" target="_blank" rel="noopener" aria-label="Website by JMM Digital"><img src="assets/jmm-digital.svg" alt="Website by JMM Digital"></a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/investor-chrome.js"></script>
+<script>
+  // ---- Placeholder share-price chart (replace with live market-data widget) ----
+  (function(){
+    var svg=document.getElementById('spChart'); if(!svg) return;
+    var W=1000,H=340, padL=60,padR=70,padT=20,padB=58;
+    var lo=0.40, hi=0.90;
+    // representative weekly closes (May 2025 → May 2026)
+    var data=[0.70,0.66,0.63,0.67,0.64,0.62,0.63,0.61,0.60,0.62,0.72,0.83,0.86,0.88,0.84,0.80,0.82,0.79,0.77,0.81,0.78,0.80,0.83,0.81,0.79,0.74,0.70,0.79,0.74,0.69,0.66,0.63,0.61,0.60,0.62,0.58,0.55,0.52,0.50,0.49,0.51,0.62,0.66,0.64,0.60,0.58,0.55,0.50,0.49,0.51,0.49,0.50];
+    var months=["Jun","Jul","Aug","Sep","Oct","Nov","Dec","2026","Feb","Mar","Apr","May"];
+    var n=data.length;
+    var px=function(i){ return padL+(W-padL-padR)*(i/(n-1)); };
+    var py=function(v){ return padT+(H-padT-padB)*(1-(v-lo)/(hi-lo)); };
+    var ns="http://www.w3.org/2000/svg";
+    function add(tag,attrs){ var e=document.createElementNS(ns,tag); for(var k in attrs) e.setAttribute(k,attrs[k]); svg.appendChild(e); return e; }
+    // y gridlines + labels
+    for(var g=0;g<=5;g++){ var val=lo+(hi-lo)*g/5; var y=py(val);
+      add('line',{x1:padL,y1:y,x2:W-padR,y2:y,stroke:'#ededed','stroke-width':1});
+      var t=add('text',{x:padL-10,y:y+4,'text-anchor':'end','font-size':12,fill:'#7c7c7c','font-family':'Helvetica,Arial,sans-serif'}); t.textContent='$'+val.toFixed(2);
+    }
+    // volume bars (right axis)
+    for(var i=0;i<n;i++){ var vh=(Math.abs(Math.sin(i*1.7))*0.6+0.15)*(H-padT-padB)*0.42;
+      add('rect',{x:px(i)-2,y:(H-padB)-vh,width:3,height:vh,fill:'#2b2b2b',opacity:0.55}); }
+    // price line
+    var d=''; for(var i=0;i<n;i++){ d+=(i?'L':'M')+px(i).toFixed(1)+','+py(data[i]).toFixed(1)+' '; }
+    add('path',{d:d,fill:'none',stroke:'#E07C30','stroke-width':2.4,'stroke-linejoin':'round','stroke-linecap':'round'});
+    // news markers
+    [6,15,24,33,41,48].forEach(function(i){ add('circle',{cx:px(i),cy:py(data[i]),r:4,fill:'#1a1a1a'}); });
+    // x labels
+    for(var m=0;m<months.length;m++){ var i=Math.round((n-1)*m/(months.length-1));
+      var t=add('text',{x:px(i),y:H-padB+22,'text-anchor':'middle','font-size':12,fill:'#7c7c7c','font-family':'Helvetica,Arial,sans-serif'}); t.textContent=months[m]; }
+    // right volume axis labels
+    [['2M',0.30],['1M',0.62],['0',0.94]].forEach(function(p){ var y=padT+(H-padT-padB)*p[1];
+      var t=add('text',{x:W-padR+12,y:y+4,'font-size':12,fill:'#7c7c7c','font-family':'Helvetica,Arial,sans-serif'}); t.textContent=p[0]; });
+    // Button active-states are managed live by the YourIR loader.
+  })();
+</script>
+<!-- ============================================================
+     YourIR live market data — Conrad Asia Energy account loader
+     This is Conrad's own account-specific loader (symbol crd.asx).
+     It self-injects the YourIR library + CSS and auto-populates every
+     [data-yourir] element above (stat tiles + price chart). Until it
+     loads (or when viewed off an authorised domain) the static
+     fallback numbers remain visible.
+       data-yourir="lastPrice"                Latest Price
+       data-yourir="securityCode"             Exchange Ticker (CRD)
+       data-yourir="priceChangePercentage"    Percent Change from last Close
+       data-yourir="volume"                   Volume
+       data-yourir="high" / "low"             Daily High / Low
+     ============================================================ -->
+<script type="text/javascript" src="https://yourir.info/3f46e16f9e883e80.js"></script>
+</body>
+</html>

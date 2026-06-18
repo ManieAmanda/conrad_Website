@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mako Project Highlights — Conrad Asia Energy Ltd</title>
+<style>
+  :root{
+    --orange:#ef9300; --orange-deep:#c97c00; --rust:#c4621a;
+    --ink:#2B2B2B; --charcoal:#4A4A4A; --slate:#7C7C7C;
+    --hair:#e4dccb;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{ font-family:var(--sans); color:var(--ink); -webkit-font-smoothing:antialiased; }
+
+  .glance{
+    position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:center;
+    padding:84px 56px 90px;
+    background:#F8F4EF url('assets/highlights-bg4.jpg') center/cover no-repeat;
+  }
+  .glance-inner{ max-width:1480px; margin:0 auto; width:100%; }
+
+  .glance h1{
+    text-align:center; font-size:46px; line-height:1.1; font-weight:700; letter-spacing:-.01em;
+    color:var(--ink); margin:0 0 70px;
+  }
+  .glance h1 .accent{ color:var(--orange); }
+
+  .stat-row{
+    display:grid; grid-template-columns:repeat(4,1fr);
+  }
+  .stat{
+    position:relative; text-align:center; padding:14px 26px 8px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  /* segmented top hairline (gap between columns) */
+  .stat::before{
+    content:""; position:absolute; top:0; left:22px; right:22px; height:1px; background:var(--hair);
+  }
+  .stat-ico{ width:96px; height:96px; color:var(--orange); margin-bottom:54px; }
+  .stat-ico svg{ width:100%; height:100%; display:block; }
+  .stat-val{ font-size:40px; line-height:1.05; font-weight:700; color:var(--orange); letter-spacing:-.01em; margin-bottom:18px; }
+  .stat-label{ font-size:16px; font-weight:700; color:var(--ink); letter-spacing:.01em; margin-bottom:8px; }
+  .stat-sub{ font-size:13.5px; line-height:1.5; color:var(--slate); max-width:24ch; }
+
+  @media (max-width:1180px){
+    .stat-row{ grid-template-columns:repeat(2,1fr); gap:54px 0; }
+    .stat::before{ display:none; }
+    .glance h1{ font-size:36px; margin-bottom:54px; }
+    .stat-ico{ margin-bottom:30px; }
+  }
+  @media (max-width:560px){
+    .glance{ padding:56px 24px; }
+    .stat-row{ grid-template-columns:1fr; gap:48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<section class="glance" data-screen-label="Mako Project Highlights">
+  <div class="glance-inner">
+    <h1>Project <span class="accent">Highlights</span></h1>
+    <div class="stat-row">
+
+      <!-- Operated interest -->
+      <div class="stat">
+        <div class="stat-ico" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 53 L32 12 L42 53"/>
+            <path d="M16 53 H48"/>
+            <path d="M32 12 V7"/>
+            <path d="M25.5 35 H38.5"/>
+            <path d="M26.5 30 L37.5 44"/>
+            <path d="M37.5 30 L26.5 44"/>
+            <path d="M27.5 22 L36.5 22"/>
+          </svg>
+        </div>
+        <div class="stat-val">76.5%</div>
+        <div class="stat-label">Operated Interest</div>
+        <div class="stat-sub">Held via West Natuna Exploration Limited (WNEL)</div>
+      </div>
+
+      <!-- 2P reserves -->
+      <div class="stat">
+        <div class="stat-ico" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M29 11 h6 v5 h-6 z"/>
+            <ellipse cx="32" cy="20" rx="13" ry="4.5"/>
+            <path d="M19 20 v26 a13 4.5 0 0 0 26 0 V20"/>
+            <path d="M19.5 30 a13 4.5 0 0 0 25 0"/>
+            <path d="M19.5 39 a13 4.5 0 0 0 25 0"/>
+          </svg>
+        </div>
+        <div class="stat-val">330 Bcf</div>
+        <div class="stat-label">2P Reserves</div>
+        <div class="stat-sub">Single "tank", &gt;98% methane — no mercury or heavy metals</div>
+      </div>
+
+      <!-- First gas -->
+      <div class="stat">
+        <div class="stat-ico" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M34 9 c2.5 9 10 12.5 10 23 a12 12 0 0 1 -24 0 c0 -6.5 4.5 -10 6.5 -15 c1.3 4 3.4 6 5.5 6.2 c2.2 -4.4 -1 -10.4 -4 -14.2 z"/>
+            <path d="M32 51 a5.5 5.5 0 0 1 -5.5 -5.5 c0 -3.3 2.3 -4.7 3.4 -7.6 c2 3 7.6 4.2 7.6 8.1 a5.5 5.5 0 0 1 -5.5 5 z"/>
+          </svg>
+        </div>
+        <div class="stat-val">Q4 2027</div>
+        <div class="stat-label">First Gas</div>
+        <div class="stat-sub">On track and fully funded</div>
+      </div>
+
+      <!-- Offtake -->
+      <div class="stat">
+        <div class="stat-ico" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 9 h16 l10 10 v34 a2 2 0 0 1 -2 2 H20 a2 2 0 0 1 -2 -2 V11 a2 2 0 0 1 2 -2 z"/>
+            <path d="M36 9 v10 h10"/>
+            <path d="M24.5 35 l4.5 4.5 l9.5 -11"/>
+            <path d="M25 47 h14"/>
+          </svg>
+        </div>
+        <div class="stat-val">100%</div>
+        <div class="stat-label">Contracted to PLN EPI</div>
+        <div class="stat-sub">Binding GSA — attractive oil-linked pricing</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

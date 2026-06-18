@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financials &amp; Reports — Conrad Asia Energy Ltd</title>
+<link rel="stylesheet" href="assets/investor.css">
+<style>
+  /* YourIR report controls + pager (matches investor.css tokens) */
+  .search-sel{ -webkit-appearance:none; appearance:none; padding:0 38px 0 18px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M1 3l4 4 4-4' stroke='white' stroke-width='2' fill='none'/></svg>");
+    background-repeat:no-repeat; background-position:right 16px center; }
+  .doc-empty{ padding:40px 4px; font-size:16px; color:var(--slate); border-bottom:2px solid var(--orange); }
+  .ann-pager{ display:flex; align-items:center; justify-content:center; gap:22px; margin-top:24px; }
+  .ann-pager button{ padding:0; border:none; background:none;
+    font:inherit; font-size:14px; font-weight:600; letter-spacing:.04em; color:var(--slate); cursor:pointer; line-height:1; transition:color .18s ease; }
+  .ann-pager button:hover{ color:var(--orange); }
+  .ann-pager button.yourir-active{ color:var(--orange); cursor:default; }
+  .ann-pager button:empty{ display:none; }
+  .ann-pager .pg-arrow{ color:var(--orange); font-size:28px; }
+  .ann-pager .pg-arrow:hover{ color:var(--orange-deep); }
+  .ann-pager .pg-arrow[disabled]{ display:none; }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="Conrad Homepage.html" aria-label="Conrad Asia Energy"><img src="assets/logo-fullcolour.png" alt="Conrad Asia Energy Ltd"></a>
+    <nav class="nav-links">
+      <div class="nav-item has-dropdown">
+        <a href="Conrad Who We Are.html">Who We Are</a>
+        <div class="dropdown">
+          <a href="Conrad Who We Are.html#foundations">Foundations</a>
+          <a href="Conrad Who We Are.html#values">Values</a>
+          <a href="Conrad Who We Are.html#history">History</a>
+          <a href="Conrad Who We Are.html#strategy">Strategy</a>
+          <a href="Conrad Who We Are.html#structure">Structure</a>
+          <a href="Board and Management.html#board">Board</a>
+          <a href="Board and Management.html#management">Management</a>
+        </div>
+      </div>
+      <div class="nav-item has-dropdown">
+        <a href="What We Do Project Overview.html">What We Do</a>
+        <div class="dropdown">
+          <a href="What We Do Project Overview.html">Project Overview</a>
+          <a href="What We Do Duyung PSC.html">Duyung PSC</a>
+          <a href="What We Do Aceh PSCs.html">Aceh PSCs</a>
+          <a href="What We Do Reserves and Resources.html">Reserves &amp; Resources</a>
+        </div>
+      </div>
+      <a href="Governance.html">Governance</a>
+      <a href="Careers.html">Careers</a>
+      <a href="Media.html">News</a>
+      <a href="Contact.html">Contact</a>
+      <div class="nav-item has-dropdown">
+        <a class="nav-cta active" href="Investor Stock Price.html">Investors</a>
+        <div class="dropdown dropdown-right">
+          <a href="Investor Stock Price.html">Stock Price</a>
+          <a class="active" href="Investor Financial Reports.html">Financial Reports</a>
+          <a href="Investor Presentations.html">Presentations</a>
+          <a href="Investor ASX Announcements.html">ASX Announcements</a>
+          <a href="Investor Analyst Coverage.html">Analyst Coverage</a>
+          <a href="Media.html">Media</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="ticker" aria-label="Key facts"><div class="ticker-track" id="tickerTrack"></div></div>
+
+<section class="hero" data-screen-label="Investor Hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <h1><span class="hero-ic">Investor <span class="accent">Centre</span></span><span class="hero-page">Financial Reports</span></h1>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="Conrad Homepage.html#projects">Explore Our Projects</a>
+      <a class="hero-textlink" href="Conrad Homepage.html#news">View Latest News <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="inv-section" data-screen-label="Financials &amp; Reports">
+  <div class="wrap inv-layout">
+    <div class="inv-main">
+      <div class="inv-head">
+        <div class="eyebrow">Investor Centre</div>
+        <h1>Financials &amp; Reports</h1>
+      </div>
+      <p class="filter-note">Filter reports by Year and Type of Report below</p>
+
+      <!-- Live financial reports via YourIR (announcements feed filtered to report
+           types). The single .doc-row inside [data-yourir="items"] is the row
+           template, repeated per result. Static rows are the fallback shown
+           until the feed loads on the authorised domain. -->
+      <div data-yourir="announcements pageSize=10 startYear=2012 filter=periodicReports">
+        <div class="filter-row">
+          <select class="filter-btn search-sel" data-yourir="year" aria-label="Filter by year"></select>
+          <select class="filter-btn search-sel" data-yourir="filter" aria-label="Filter by report type">
+            <option value="periodicReports">All Reports</option>
+            <option value="annualReports">Annual Reports</option>
+            <option value="halfyr">Half Yearly Reports</option>
+            <option value="quarterly">Quarterly Reports</option>
+          </select>
+        </div>
+
+        <div class="doc-list" data-yourir="items">
+          <div class="doc-row">
+            <a class="dt" data-yourir="$cur.heading"></a>
+            <span class="meta">
+              <span class="dd" data-yourir="$cur.date"></span>
+              <a class="dl yourir-download" href="#" aria-label="Download"><svg class="dl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg></a>
+            </span>
+          </div>
+        </div>
+
+        <div data-yourir="if isEmpty" class="doc-empty">No reports found for this selection.</div>
+
+        <div data-yourir="ifnot isEmpty" class="ann-pager">
+          <button data-yourir="prevPage" class="pg-arrow" aria-label="Previous page">←</button>
+          <button data-yourir="navPage1"></button>
+          <button data-yourir="navPage2"></button>
+          <button data-yourir="navPage3"></button>
+          <button data-yourir="navPage4"></button>
+          <button data-yourir="navPage5"></button>
+          <button data-yourir="navPage6"></button>
+          <button data-yourir="navPage7"></button>
+          <button data-yourir="navPage8"></button>
+          <button data-yourir="nextPage" class="pg-arrow" aria-label="Next page">→</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="inv-aside">
+      <nav class="inv-subnav">
+        <a href="Investor Stock Price.html">Stock Price</a>
+        <a class="active" href="Investor Financial Reports.html">Financial Reports</a>
+        <a href="Investor Presentations.html">Presentations</a>
+        <a href="Investor ASX Announcements.html">ASX Announcements</a>
+        <a href="Investor Analyst Coverage.html">Analyst Coverage</a>
+      </nav>
+    </aside>
+  </div>
+</section>
+
+<div class="signup" data-screen-label="Stay In Touch">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Updates</div>
+      <h2>Stay In Touch</h2>
+      <p>Get our latest news, project updates and announcements delivered straight to your inbox.</p>
+    </div>
+    <form class="form" onsubmit="return false;">
+      <div class="field"><label>First name</label><input type="text" placeholder="Jane"></div>
+      <div class="field"><label>Last name</label><input type="text" placeholder="Doe"></div>
+      <div class="field full"><label>Email</label><input type="email" placeholder="jane@company.com"></div>
+      <div class="submit-row"><button class="btn btn-primary" type="submit">Subscribe</button></div>
+    </form>
+  </div>
+</div>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo-fullcolour.png" alt="Conrad Asia Energy Ltd">
+        <p>Developing natural gas resources in Southeast Asia — supplying affordable, low-carbon energy to the world's fastest growing market.</p>
+        <div class="asx">ASX: CRD</div>
+        <div class="foot-social">
+          <a href="#" aria-label="Conrad Asia Energy on X"><img src="assets/x-icon.svg" alt="X"></a>
+          <a href="#" aria-label="Conrad Asia Energy on LinkedIn"><img src="assets/linkedin-icon.svg" alt="LinkedIn"></a>
+        </div>
+      </div>
+      <div class="foot-col"><h4>Company</h4>
+        <a href="Conrad Who We Are.html">Who We Are</a><a href="What We Do Project Overview.html">What We Do</a><a href="Governance.html">Governance</a>
+        <a href="Media.html">News</a><a href="Careers.html">Careers</a><a href="Contact.html">Contact</a>
+      </div>
+      <div class="foot-col"><h4>Projects</h4>
+        <a href="Conrad Homepage.html#projects">Mako Gas Field</a><a href="Conrad Homepage.html#projects">Offshore North West Aceh PSC</a>
+        <a href="Conrad Homepage.html#projects">Offshore South West Aceh PSC</a><a href="#">Reserves &amp; Resources</a>
+      </div>
+      <div class="foot-col"><h4>Investors</h4>
+        <a href="Investor Stock Price.html">Stock Price</a><a href="Investor Financial Reports.html">Financial Reports</a>
+        <a href="Investor Presentations.html">Presentations</a><a href="Investor ASX Announcements.html">ASX Announcements</a><a href="Investor Analyst Coverage.html">Analyst Coverage</a><a href="Media.html">Media</a>
+      </div>
+      <div class="foot-col"><h4>Legal</h4>
+        <a href="#">Disclaimer</a><a href="#">Privacy Policy</a><a href="#">Fraudulent Job Offers</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Conrad Asia Energy Ltd. All rights reserved.</span>
+      <a class="foot-jmm" href="https://www.jmmdigital.com.au" target="_blank" rel="noopener" aria-label="Website by JMM Digital"><img src="assets/jmm-digital.svg" alt="Website by JMM Digital"></a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/investor-chrome.js"></script>
+<!-- YourIR live market data — Conrad Asia Energy account loader (symbol crd.asx).
+     Self-injects the YourIR library + CSS and drives [data-yourir] elements
+     above. Populates live when served from an authorised domain; the static
+     fallback rows remain visible until then. -->
+<script type="text/javascript" src="https://yourir.info/3f46e16f9e883e80.js"></script>
+</body>
+</html>
